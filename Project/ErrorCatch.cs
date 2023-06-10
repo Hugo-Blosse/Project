@@ -23,7 +23,7 @@ namespace Project
             Console.Clear();
             return val;
         }
-        public static int ErrorDif(string s) 
+        public static int Error3(string s) 
         {
             int x = 1;
             int value = 0;

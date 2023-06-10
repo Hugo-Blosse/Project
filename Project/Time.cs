@@ -17,14 +17,15 @@ namespace Project
             get { return n; }
             set { n = value; }
         }
+        private static int m = 2000;
         public static void StartTimer(int difficulity)
         {
-            timer1 = new System.Timers.Timer((1200000/difficulity));
+            timer1 = new System.Timers.Timer((1200000/difficulity)+m*((20/difficulity)));
             timer1.Elapsed += TimeEnd;
             timer1.AutoReset = false;
             timer1.Enabled = true;
 
-            timer2 = new System.Timers.Timer(60000);
+            timer2 = new System.Timers.Timer(60000+m);
             timer2.Elapsed += Reminder;
             timer2.AutoReset = true;
             timer2.Enabled = true;
@@ -38,8 +39,9 @@ namespace Project
         }
         private static void Reminder(Object source, ElapsedEventArgs e)
         {
-            N -= 1;
             Console.WriteLine("\nPozostały czas: " + (N) + " min.");
+            N -= 1;
+            Thread.Sleep(2000);
         }
     }
 }

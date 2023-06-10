@@ -16,10 +16,9 @@ namespace Project
             Name = name;
             Description = description;
         }
-        public static Dictionary<string,int> Create()
+        public void Info() 
         {
-           Dictionary<string,int> inventory = new Dictionary<string,int>();
-            return inventory;
+            Console.WriteLine(Name + Description);
         }
     }
 }
