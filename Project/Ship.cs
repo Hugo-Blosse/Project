@@ -14,7 +14,7 @@ namespace Project
             get { return dif; }
             set { dif = value; }
         }
-        private string place;
+        private string place = "";
         public string Place
         {
             get { return place; }

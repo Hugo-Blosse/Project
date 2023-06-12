@@ -20,7 +20,7 @@ namespace Project
         private static int m = 2000;
         public static void StartTimer(int difficulity)
         {
-            timer1 = new System.Timers.Timer((1200000/difficulity)+m*((20/difficulity)));
+            timer1 = new System.Timers.Timer((1080000/difficulity)+m*((18/difficulity)));
             timer1.Elapsed += TimeEnd;
             timer1.AutoReset = false;
             timer1.Enabled = true;
@@ -30,17 +30,19 @@ namespace Project
             timer2.AutoReset = true;
             timer2.Enabled = true;
 
-            N = 20 / difficulity;
+            N = 18 / difficulity;
         }
-        private static void TimeEnd(Object source, ElapsedEventArgs e)
+        private static void TimeEnd(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("Czas dobiegł końca. Nie udało ci się dotrzeć do celu.");
+            Console.Clear();
+            Puzzles.Tips("Czas dobiegł końca. Nie udało ci się dotrzeć do celu.");
             Environment.Exit(0);
         }
-        private static void Reminder(Object source, ElapsedEventArgs e)
+        private static void Reminder(object source, ElapsedEventArgs e)
         {
-            Console.WriteLine("\nPozostały czas: " + (N) + " min.");
             N -= 1;
+            if ( N > 0) Puzzles.Tips("\nPozostały czas: " + (N) + " min.");
+            Console.WriteLine();
             Thread.Sleep(2000);
         }
     }

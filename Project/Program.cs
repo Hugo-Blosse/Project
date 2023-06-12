@@ -9,41 +9,46 @@ namespace Project
         static void Main(string[] args)
         {
             Ship submarine = new Ship();
+            Console.BackgroundColor = ConsoleColor.White;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("ZDRADA NA ATOMOWYM OKRĘCIE PODWODNYM");
+            Console.WriteLine("Jest rok 1942. Zostałeś wybrany na kapitana nowej łodzi podwodnej.\nTwoim zadaniem jest dopłynięcie do celu i powstrzymanie ataków sabotarzysty.");
+            Console.WriteLine("Są 3 poziomy trudności (1 najłatwiejszy, 3 najtrudniejszy).\nRóżnią się czasem na wykonanie misji i poziomem agresji zdrajcy. Powodzenia.");
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
             submarine.Dif = ErrorCatch.Error3("Wybierz cel misji kapitanie (poziom trudności - 1 jest najłatwiejszy):\n 1 - Włochy \n 2 - Niemcy \n 3 - Syberia");
             submarine.Place = submarine.Dif.ToString();
             Random rng = new Random();
-            int random = rng.Next(2+2*submarine.Dif);
+            int random = rng.Next(3);
             bool a = false;
             bool b = false;
             bool c = false;
-            Console.WriteLine(random-2);
-            switch (random-2)
+            switch (random)
             {
-                case <=0:
+                case 0:
                     a = true;
                     break;
                 case 1:
                     b = true;
                     break;
-                case >=2:
+                case 2:
                     c = true;
                     break;
             }
             Crewmates anna = new Crewmates("Anna", a);
             Crewmates bob = new Crewmates("Bob", b);
             Crewmates clobert = new Crewmates("Clobert", c);
-            string name = "s";
-            int diff = 1;
-            if (anna.Sabo) { name = "Anna"; diff = 1; }
-            if (bob.Sabo) { name = "Bob"; diff = 2; }
-            if (clobert.Sabo) { name = "Clobert"; diff = 3; }
-            Saboteur saboteur = new Saboteur(name, diff);
-            Console.WriteLine(saboteur.Name + saboteur.Diff);
+            string name = "";
+            if (anna.Sabo) { name = "Anna"; }
+            if (bob.Sabo) { name = "Bob"; }
+            if (clobert.Sabo) { name = "Clobert"; }
+            Saboteur saboteur = new Saboteur(name);
             Time.StartTimer(submarine.Dif);
             Console.WriteLine(submarine.Place+" to cel twojej misji. Musisz dopłynąć tam przed upłynięciem "+Time.N+" minut.");
+            Ship.Drawing();
             Thread.Sleep(2000);
             Console.WriteLine();
-            Menu.MainRoom(anna.Name, bob.Name, clobert.Name);
+            Menu.MainRoom(saboteur.Name,submarine.Dif,anna,bob,clobert);
         }
     }
 }

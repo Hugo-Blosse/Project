@@ -23,21 +23,38 @@ namespace Project
             name = crewName;
             sabo = isSaboteur;
         }
-        public static void Talk(int name)
+        public static void Talk(Crewmates crew, int difficulity)
         {
-            switch(name)
+            switch(crew.name)
             {
-                case 1:
-                    Console.WriteLine("W pokoju z lewej strony zespsuł się zawór...\nWpisz cokolwiek, żeby kontynuować.");
-                    Console.ReadLine();
+                case "Anna":
+                    if (difficulity != 3)
+                    {
+                        Console.WriteLine(crew.name + ": W pokoju z lewej strony zespsuł się zawór...");
+                        Console.Write(crew.Name + ": Chyba potrzeba "); Puzzles.Tips("klucza francuskiego"); Console.WriteLine(", żeby to naprawić...");
+                        Console.WriteLine("Kliknij enter, żeby kontynuować.");
+                        Console.ReadLine();
+                        break;
+                    }
+                    Console.WriteLine("...");
                     break;
-                case 2:
-                    Console.WriteLine("W pokoju przed tobą szczur przegryzł kable. Zająłbym się tym, ale zbyt wygodnie mi się siedzi.\nWpisz cokolwiek, żeby kontynuować.");
-                    Console.ReadLine();
+                case "Bob":
+                    if (difficulity != 3)
+                    {
+                        Console.WriteLine(crew.Name + ": W pokoju przed tobą szczur przegryzł kable. Zająłem się tym, ale "); Puzzles.Tips("gryzoń dalej tam jest."); Console.WriteLine("");
+                        Console.WriteLine("Kliknij enter, żeby kontynuować.");
+                        Console.ReadLine();
+                    }
+                    Console.WriteLine("...");
                     break;
-                case 3:
-                    Console.WriteLine("W pokoju z prawej strony mamy przeciek, zatamujesz go prawda?\nWpisz cokolwiek, żeby kontynuować.");
-                    Console.ReadLine();
+                case "Clobert":
+                    if (difficulity != 3)
+                    {
+                        Console.WriteLine(crew.Name + ": W pokoju z prawej strony mamy przeciek, zatamujesz go prawda?");
+                        Console.WriteLine("Kliknij enter, żeby kontynuować.");
+                        Console.ReadLine();
+                    }
+                    Console.WriteLine("...");
                     break;
             }
         }

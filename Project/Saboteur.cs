@@ -13,15 +13,29 @@ namespace Project
         {
             get { return name; }
         }
-        private int diff;
-        public int Diff 
-        {
-            get { return diff; }
-        }
-        public Saboteur (string saboName, int saboDiff)
+        public Saboteur (string saboName)
         {
             name = saboName;
-            diff = saboDiff;
+        }
+        public static bool ComeIn(int difficulity)
+        {
+            bool comein;
+            Random rng = new Random();
+            switch (difficulity)
+            {
+                case 1:
+                    if (rng.Next(10) == 0) { comein = true; break; }
+                    comein = false;
+                    break;
+                case 2:
+                    if (rng.Next(2) == 1) { comein = true; break; }
+                    comein = false;
+                    break;
+                default: 
+                    comein = true;
+                    break;
+            }
+            return comein;
         }
     }
 }

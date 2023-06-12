@@ -8,17 +8,68 @@ namespace Project
 {
     class Inventory
     {
-        public string Name { get; private set; }
-        public string Description { get; private set; }
+        private List<Item> list;
 
-        public Inventory(string name, string description) 
+        public List<Item> List
         {
-            Name = name;
-            Description = description;
+            get { return list; }
         }
-        public void Info() 
+
+        public void AddItem(Item item)
         {
-            Console.WriteLine(Name + Description);
+            if (!list.Contains(item))
+            {
+                list.Add(item);
+            }
+        }
+
+        public override string ToString()
+        {
+            string str = string.Empty;
+
+            int num = 1;  
+            foreach(Item i in list)
+            {
+                
+                str += "" + num + ": " + i.ToString() +"\n";
+            }
+            return str;
+        }
+
+        public Inventory() { list = new List<Item>(); }  //foreach(Item it in inventory.List) item.ToString()
+    }
+    class Item
+    {
+        public string Name { get; set; }
+        public string Description { get; set; }
+
+        public override string ToString()
+        {
+            return "Nazwa: " + Name + " Opis: " + Description;
+        }
+
+        public override bool Equals(object? obj)                        //override = upewnij sie, ze to jest przeladowanie metody, 
+        {                                                               //przeladowanie => nadpisanie poprzedniej metody., chyba ze base.EQUALS(OBJ)
+            if (obj == null || !GetType().Equals(obj.GetType())) 
+            {
+                return false;
+            }
+            else 
+            {
+                Item item = (Item)obj;
+                return Name.Equals(item.Name) && Description.Equals(item.Description);
+            }
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Name.GetHashCode(), Description.GetHashCode());
+        }
+
+        public Item() 
+        {
+            Name = string.Empty;
+            Description = string.Empty;
         }
     }
 }

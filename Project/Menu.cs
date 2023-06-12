@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
@@ -9,40 +10,90 @@ namespace Project
 {
     class Menu
     {
-        public static void MainRoom(string a, string b, string c)
+        private static Inventory inventory = new Inventory();
+        public static Inventory Inventory 
+        { get { return inventory; } }
+        public static void MainRoom(string name, int difficulity,Crewmates crew1, Crewmates crew2, Crewmates crew3)
         {
-            List<Inventory> inventory = Menu.Create();
             int x = 1;
             while (x != 0)
             {
                 Console.Clear();
                 string choice;
                 Console.WriteLine("Jesteś w pomieszczeniu głównym. Widzisz twarze swoich towarzyszy.");
-                Console.WriteLine(a + " wygląda na zaniepokojoną, " + b + " siedzi w stoickim spokoju, " + c + " patrzy się na ciebie zaciekawiony.");
+                Console.WriteLine(crew1.Name + " wygląda na zaniepokojoną, "+crew2.Name+" siedzi w stoickim spokoju, "+crew3.Name+" patrzy na ciebie zaciekawiony.");
                 Console.WriteLine("Jaką decyzję podejmujesz?");
                 choice = ErrorCatch.ErrorMenu("1 - porozmawiaj z towarzyszem\n2 - sprawdź ekwipunek\n3 - pójdź do innego pokoju \n4 - wyjdź");
                 switch (choice)
                 {
                     case "1":
-                        Crewmates.Talk(ErrorCatch.Error3("Z kim chcesz porozmawiać?\n 1 - Anna\n 2 - Bob\n 3 - Clobert"));
+                        switch(ErrorCatch.Error3("Z kim chcesz porozmawiać?\n 1 - "+crew1.Name+"\n 2 - "+crew2.Name+"\n 3 - "+crew3))
+                        {
+                            case 1:
+                                Crewmates.Talk(crew1, difficulity);
+                                break;
+                            case 2:
+                                Crewmates.Talk(crew2, difficulity);
+                                break;
+                            case 3:
+                                Crewmates.Talk(crew3, difficulity);
+                                break;
+                        }
                         break;
                     case "2":
+                        Console.WriteLine("Zawartość ekwipunku:");
+                        Console.WriteLine(Inventory.ToString());
+                        Console.WriteLine("Kliknij enter, żeby kontynuować.");
+                        Console.ReadLine();
                         break;
                     case "3":
-                        Puzzles.Puzzle(ErrorCatch.Error3("Do którego pokoju chcesz wejść?\n 1 - pokój z lewej strony\n 2 - pokój z prawej strony\n 3 - pokój na wprost"));
+                        Puzzles.Puzzle(ErrorCatch.Error3("Do którego pokoju chcesz wejść?\n 1 - pokój z lewej strony\n 2 - pokój z prawej strony\n 3 - pokój na wprost"),difficulity);
                         break;
                     case "4":
-                        x = 0;
-                        Console.WriteLine("Wychodzisz z okrętu podwodnego przez śluzę. Do pomieszczenia wpływa woda, która spycha cię na podłogę.\nNikt nie zdążył uciec.");
+                        Console.WriteLine("Próbujesz wyjść z okrętu podwodnego przez śluzę. Do pomieszczenia wpływa woda, która spycha cię na podłogę.\nNikt nie zdążył uciec.");
+                        Console.Write("Zakończenie 1 - Topielec. "); Puzzles.Tips("Może wychodzenie z pomieszczenia głównego jest złym pomysłem.");
+                        Ending1();
                         break;
                 }
             }
         }
-        public static List<Inventory> Create()
+        public static void Ending1()
         {
-            List<Inventory> inventory = new List<Inventory>();
-            new Inventory("Inventory", "221");
-            return inventory;
+            Console.WriteLine("\n");
+            Console.WriteLine("_| |_______________");
+            Console.WriteLine("  !");
+            Console.WriteLine(@"~~!~~\0/~~~~~~~~~~~");
+            Console.WriteLine("      |");
+            Console.WriteLine(@"     / \");
+            Console.WriteLine("___________________");
+            Environment.Exit(0);
+        }
+        public static void Ending2()
+        {
+            Console.WriteLine();
+            Puzzles.Tips(@" )  )( )( "+"\n");
+            Puzzles.Tips(@" ( _(_(_)"+"\n");
+            Console.WriteLine(@"  /     \");
+            Console.WriteLine(" | o   o |");
+            Console.WriteLine(" |   ^   | ");
+            Console.WriteLine(@"  \ mmm /");
+            Console.WriteLine(@"   \___/ ");
+            Environment.Exit(0);
+        }
+        public static void Ending3()
+        {
+            Console.WriteLine("Czujesz przeszywający ból w plecach. Spoglądając na dół widzisz ostrze noża, które przebiło twój brzuch na wylot.\nUpadasz na podłogę i giniesz od swojej rany.");
+            Puzzles.Tips("Zamykanie drzwi jest ważne, gdy nie możesz ufać swojej załodze.");
+            Console.WriteLine();
+            Puzzles.Tips("   ."+"\n");
+            Puzzles.Tips(@"  /i\"+"\n");
+            Puzzles.Tips("  |i|"+"\n");
+            Console.WriteLine("  |i| ");
+            Console.WriteLine("  |i|");
+            Console.WriteLine(" -----");
+            Console.WriteLine("  | |");
+            Console.WriteLine("   0");
+            Environment.Exit(0);
         }
     }
 }
