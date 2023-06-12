@@ -35,11 +35,11 @@ namespace Project
                     c = true;
                     break;
             }
-            Crewmates anna = new Crewmates("Anna", a);
+            Crewmates aurelia = new Crewmates("Aurelia", a);
             Crewmates bob = new Crewmates("Bob", b);
             Crewmates clobert = new Crewmates("Clobert", c);
             string name = "";
-            if (anna.Sabo) { name = "Anna"; }
+            if (aurelia.Sabo) { name = "Aurelia"; }
             if (bob.Sabo) { name = "Bob"; }
             if (clobert.Sabo) { name = "Clobert"; }
             Saboteur saboteur = new Saboteur(name);
@@ -48,7 +48,7 @@ namespace Project
             Ship.Drawing();
             Thread.Sleep(2000);
             Console.WriteLine();
-            Menu.MainRoom(saboteur.Name,submarine.Dif,anna,bob,clobert);
+            Menu.MainRoom(saboteur.Name,submarine.Dif,aurelia,bob,clobert);
         }
     }
 }

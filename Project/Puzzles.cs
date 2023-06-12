@@ -100,7 +100,7 @@ namespace Project
                             Menu.Ending3();
                         }
                         Console.WriteLine("Wpisz kod do drzwi.");
-                        string code = Console.ReadLine();
+                        string code = Console.ReadLine()+"";
                         if (code == Code)
                         {
                             switch (ErrorCatch.Error2("Czy chcesz wejść do środka?\n 1 - tak\n 2 - nie"))

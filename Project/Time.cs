@@ -20,7 +20,7 @@ namespace Project
         private static int m = 2000;
         public static void StartTimer(int difficulity)
         {
-            timer1 = new System.Timers.Timer((1080000/difficulity)+m*((18/difficulity)));
+            timer1 = new System.Timers.Timer((1080000/difficulity)+m*((12/difficulity)));
             timer1.Elapsed += TimeEnd;
             timer1.AutoReset = false;
             timer1.Enabled = true;
@@ -30,7 +30,7 @@ namespace Project
             timer2.AutoReset = true;
             timer2.Enabled = true;
 
-            N = 18 / difficulity;
+            N = 12 / difficulity;
         }
         private static void TimeEnd(object source, ElapsedEventArgs e)
         {

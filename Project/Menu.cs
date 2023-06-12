@@ -27,16 +27,16 @@ namespace Project
                 switch (choice)
                 {
                     case "1":
-                        switch(ErrorCatch.Error3("Z kim chcesz porozmawiać?\n 1 - "+crew1.Name+"\n 2 - "+crew2.Name+"\n 3 - "+crew3))
+                        switch(ErrorCatch.Error3("Z kim chcesz porozmawiać?\n 1 - "+crew1.Name+"\n 2 - "+crew2.Name+"\n 3 - "+crew3.Name))
                         {
                             case 1:
-                                Crewmates.Talk(crew1, difficulity);
+                                Crewmates.Talk(crew1);
                                 break;
                             case 2:
-                                Crewmates.Talk(crew2, difficulity);
+                                Crewmates.Talk(crew2);
                                 break;
                             case 3:
-                                Crewmates.Talk(crew3, difficulity);
+                                Crewmates.Talk(crew3);
                                 break;
                         }
                         break;
