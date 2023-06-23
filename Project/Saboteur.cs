@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,21 +18,21 @@ namespace Project
         {
             name = saboName;
         }
-        public static bool ComeIn(int difficulity)
+        public static bool ComeIn(DifficulityLevel difficulity)
         {
-            bool comein;
+            bool comein = false;
             Random rng = new Random();
             switch (difficulity)
             {
-                case 1:
+                case DifficulityLevel.Easy:
                     if (rng.Next(10) == 0) { comein = true; break; }
                     comein = false;
                     break;
-                case 2:
+                case DifficulityLevel.Medium:
                     if (rng.Next(2) == 1) { comein = true; break; }
                     comein = false;
                     break;
-                default: 
+                case DifficulityLevel.Hard: 
                     comein = true;
                     break;
             }

@@ -17,15 +17,14 @@ namespace Project
             get { return n; }
             set { n = value; }
         }
-        private static int m = 2000;
         public static void StartTimer(int difficulity)
         {
-            timer1 = new System.Timers.Timer((1080000/difficulity)+m*((12/difficulity)));
+            timer1 = new System.Timers.Timer((720000/difficulity)+2000*((12/difficulity)));
             timer1.Elapsed += TimeEnd;
             timer1.AutoReset = false;
             timer1.Enabled = true;
 
-            timer2 = new System.Timers.Timer(60000+m);
+            timer2 = new System.Timers.Timer(60000+2000);
             timer2.Elapsed += Reminder;
             timer2.AutoReset = true;
             timer2.Enabled = true;
@@ -35,8 +34,7 @@ namespace Project
         private static void TimeEnd(object source, ElapsedEventArgs e)
         {
             Console.Clear();
-            Puzzles.Tips("Czas dobiegł końca. Nie udało ci się dotrzeć do celu.");
-            Environment.Exit(0);
+            Menu.Ending4();
         }
         private static void Reminder(object source, ElapsedEventArgs e)
         {

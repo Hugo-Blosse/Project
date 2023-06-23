@@ -9,32 +9,39 @@ namespace Project
 {
     class ErrorCatch
     {
-        public static string ErrorMenu(string s) 
+        public static int Error4(string s) 
         {
             int x = 1;
-            string val = "0";
+            int value = 0;
             while (x != 0)
             {
                 Console.WriteLine(s);
-                val = Console.ReadLine()+"";
+                string val = Console.ReadLine() + "";
                 switch (val)
                 {
                     case "1":
                         x = 0;
+                        value = 1;
                         break;
                     case "2":
                         x = 0;
+                        value = 2;
                         break;
                     case "3":
                         x = 0;
+                        value = 3;
                         break;
                     case "4":
                         x = 0;
+                        value = 4;
+                        break;
+                    default: 
+                        Console.WriteLine("Nieprawidłowa wartość");
                         break;
                 }
             }
             Console.Clear();
-            return val;
+            return value;
         }
         public static int Error3(string s) 
         {
@@ -42,9 +49,8 @@ namespace Project
             int value = 0;
             while (x != 0)
             {
-                string val;
                 Console.WriteLine(s);
-                val = Console.ReadLine()+"";
+                string val = Console.ReadLine() + "";
                 switch (val) 
                 {
                     case "1":
@@ -73,9 +79,8 @@ namespace Project
             int val = 0;
             while (x != 0)
             {
-                string value;
                 Console.WriteLine(s);
-                value = Console.ReadLine() + "";
+                string value = Console.ReadLine() + "";
                 switch(value)
                 {
                     case "1":

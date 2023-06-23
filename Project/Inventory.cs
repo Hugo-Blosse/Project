@@ -32,11 +32,12 @@ namespace Project
             {
                 
                 str += "" + num + ": " + i.ToString() +"\n";
+                num++;
             }
             return str;
         }
 
-        public Inventory() { list = new List<Item>(); }  //foreach(Item it in inventory.List) item.ToString()
+        public Inventory() { list = new List<Item>(); }
     }
     class Item
     {
@@ -46,30 +47,6 @@ namespace Project
         public override string ToString()
         {
             return "Nazwa: " + Name + " Opis: " + Description;
-        }
-
-        public override bool Equals(object? obj)                        //override = upewnij sie, ze to jest przeladowanie metody, 
-        {                                                               //przeladowanie => nadpisanie poprzedniej metody., chyba ze base.EQUALS(OBJ)
-            if (obj == null || !GetType().Equals(obj.GetType())) 
-            {
-                return false;
-            }
-            else 
-            {
-                Item item = (Item)obj;
-                return Name.Equals(item.Name) && Description.Equals(item.Description);
-            }
-        }
-
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Name.GetHashCode(), Description.GetHashCode());
-        }
-
-        public Item() 
-        {
-            Name = string.Empty;
-            Description = string.Empty;
         }
     }
 }
